@@ -25,9 +25,8 @@ export class User {
     }
     //Load the user
     loadByUsername(username:string) {
-        const userLoader = new LoggedInUser();
+        const userLoader = LoggedInUser.getInstance()
         const loadedUser = userLoader.loginUser(username);
-        console.log(loadedUser)
         return loadedUser;
     }
 }
@@ -37,20 +36,20 @@ export class User {
 export class LoggedInUser {
 
     private static instance: LoggedInUser | null;
-
     private user: any;
     
-    private counter:number = 0
-    constructor() {
-        this.counter++
-        console.log(this.counter)
-        if (LoggedInUser.instance) {
-            return LoggedInUser.instance;
-        } else {
-            return LoggedInUser.instance = this;
-        }
+     private constructor() {
+
     }
 
+
+    public static getInstance(){
+
+        if(!LoggedInUser.instance){
+            LoggedInUser.instance = new LoggedInUser()
+        }
+        return LoggedInUser.instance
+    }
     public loginUser(username:string){
             const path = `${__dirname}/data/${username}`
             const loggedInUser = fs.readFileSync(path, "utf-8")
