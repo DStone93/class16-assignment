@@ -1,5 +1,5 @@
 {
-  "name": "class5-live",
+  "name": "class16-assignment",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -14,7 +14,7 @@
     "build:compile": "tsc",
     "test": "nyc mocha -r ts-node/register tests/**/*.spec.ts"
   },
-  "author": "Bradley Holbrook",
+  "author": "Derrick Stone",
   "license": "ISC",
   "devDependencies": {
     "@istanbuljs/nyc-config-typescript": "^1.0.1",
