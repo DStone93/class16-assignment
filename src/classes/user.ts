@@ -1,38 +1,60 @@
-import fs = require('fs')
-import { v4 } from 'uuid'
+import fs = require("fs");
+import { v4 } from "uuid";
 
-interface IUser {
-    id:string,
-    name:string,
-    password:string,
 
+export class User {
+    private id: string;
+    username: string;
+    password: string;
+
+    constructor() {
+    }
+
+    save(){
+
+        const userToSave = {
+            username: this.username,
+            password: this.password,
+            id: this.id
+        };
+        const userData = JSON.stringify(userToSave)
+        const path = `${__dirname}/data/${this.username}`;
+        if(!fs.existsSync(`${__dirname}/data`)){
+            fs.mkdirSync(`${__dirname}/data`)
+        }
+        fs.appendFileSync(path, userData, "utf-8");
+        return userToSave;
+    }
+
+    load(username:string) {
+        const userLoader = new LoggedInUser();
+        const loadedUser = userLoader.loginUser(username);
+        console.log(loadedUser)
+        return loadedUser;
+    }
 }
-const path = `${__dirname}/data`
 
 
-export class User{
-    
-    private static instance:User|null
 
-    private _client:any
+class LoggedInUser {
+    private static instance: LoggedInUser | null;
 
-    public createUser(user:IUser):Promise<any>{
-        return new Promise((resolve, reject) => {
-            const userData = JSON.stringify(user)
-            fs.writeFileSync(path, userData, "utf-8")
-            return user;
-        })
+    private user: any;
+
+    public loginUser(username:string){
+            const path = `${__dirname}/data/${username}`;
+            const users = fs.readFileSync(path, "utf-8");
+            const usersFile = [JSON.parse(users)]
+            const loggedInUser = usersFile.find((u:any) => u.username === username);
+            this.user = loggedInUser
+            return loggedInUser;
     }
 
-    public loginUser():Promise<any>{
-        return new Promise((resolve, reject) => {
-            const users = fs.readFileSync(path, "utf-8")
-        })
-    }
-
-    public logoutUser():Promise<any>{
-        return new Promise((resolve, reject) => {
-            
-        })
+    constructor() {
+        if (LoggedInUser.instance) {
+            return LoggedInUser.instance;
+        } else {
+            LoggedInUser.instance = this;
+        }
     }
 }

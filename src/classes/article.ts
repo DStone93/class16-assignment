@@ -1,10 +1,10 @@
-import fs from 'fs';
-import { v4 } from 'uuid';
+import fs from "fs";
+import { v4 } from "uuid";
 
 enum eArticle {
     Guest = "Free",
     Premium = "Premium",
-    Paid = "Paid"
+    Paid = "Paid",
 }
 
 class Article {
@@ -15,59 +15,59 @@ class Article {
     type: string;
 }
 
-
 export class ArticleBuilder {
-
     baseArticle = Article;
 
     private _instance: Article;
 
-    setId(){
-        this._instance.id = v4()
+    setId() {
+        this._instance.id = v4();
     }
 
-    setTitle(title:string){
-        this._instance.title = title; 
-    }
-    
-    setDescription(desc:string){
-        this._instance.description = desc; 
+    setTitle(title: string) {
+        this._instance.title = title;
     }
 
-    setBody(body:string){
-        this._instance.body = body; 
+    setDescription(desc: string) {
+        this._instance.description = desc;
     }
 
-    setType(type:eArticle){
-        switch(type){
-            case eArticle.Guest: this.baseArticle; break;
-            case eArticle.Premium: this.baseArticle; break;
-            case eArticle.Paid: this.baseArticle; break;
-            default: throw new Error ("Your Article Needs To Have a Type")
+    setBody(body: string) {
+        this._instance.body = body;
+    }
+
+    setType(type: eArticle) {
+        switch (type) {
+            case eArticle.Guest:
+                this.baseArticle;
+                break;
+            case eArticle.Premium:
+                this.baseArticle;
+                break;
+            case eArticle.Paid:
+                this.baseArticle;
+                break;
+            default:
+                throw new Error("Your Article Needs To Have a Type");
         }
     }
 
-    create(){
+    create() {
         const path = `${__dirname}/articles.json`;
     }
 
-    load(){
+    // load(){
 
-    }
+    // }
 
-    delete(){
+    // delete(){
 
-    }
+    // }
 }
 
 export class ArticleDirector {
-    constructor( public builder:typeof ArticleBuilder){
-
-    }
-
-
+    constructor(public builder: typeof ArticleBuilder) {}
 }
 
 // const director = new ArticleDirector(ArticleBuilder);
 // const article = director.whatever.create()
-
