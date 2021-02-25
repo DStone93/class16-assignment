@@ -20,6 +20,7 @@
     "@istanbuljs/nyc-config-typescript": "^1.0.1",
     "@types/chai": "^4.2.12",
     "@types/mocha": "^8.0.3",
+    "@types/uuid": "^8.3.0",
     "@typescript-eslint/eslint-plugin": "^4.1.1",
     "@typescript-eslint/parser": "^4.1.1",
     "chai": "^4.2.0",
@@ -29,5 +30,11 @@
     "prettier": "2.1.1",
     "ts-node": "^9.0.0",
     "typescript": "^4.0.2"
+  },
+  "dependencies": {
+    "@types/fs-extra": "^9.0.7",
+    "fs": "0.0.1-security",
+    "uuid": "^8.3.2",
+    "v4": "0.0.1"
   }
 }
