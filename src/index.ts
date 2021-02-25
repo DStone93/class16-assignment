@@ -18,3 +18,4 @@ testUser2.loadByUsername("user")
 console.log(testLogin.loginUser("user"))
 
 const loadUser2 = testUser2.loadByUsername("user")
+
