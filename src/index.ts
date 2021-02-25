@@ -1,4 +1,4 @@
-import { ArticleBuilder, eArticle } from "./classes/article";
+import { ArticleBuilder } from "./classes/article";
 
 
 const test = new ArticleBuilder();

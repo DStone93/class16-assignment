@@ -1,13 +1,13 @@
 import fs from 'fs';
 import { v4 } from 'uuid';
 
-export enum eArticle {
+enum eArticle {
     Guest = "Free",
     Premium = "Premium",
     Paid = "Paid"
 }
 
-export class Article {
+class Article {
     id: string;
     title: string;
     description: string;
@@ -24,29 +24,31 @@ export class ArticleBuilder {
 
 
     protected get instance():Article {
-        // if we don't have an instance of BikeBuilder
-        if( !this._instance ){
-            this._instance = new this.baseArticle()
+        
+                if( !this._instance ){
+                    
+                    this._instance = new this.baseArticle
 
-        }
-        // if we do have an instance already, return it.
-        return this._instance;
-    }
+        
+                }
+        
+                return this._instance;
+            }
 
     setId(){
-        this._instance.id = v4()
+        this.instance.id = v4()
     }
 
     setTitle(title:string){
-        this._instance.title = title; 
+        this.instance.title = title; 
     }
     
     setDescription(desc:string){
-        this._instance.description = desc; 
+        this.instance.description = desc; 
     }
 
     setBody(body:string){
-        this._instance.body = body; 
+        this.instance.body = body; 
     }
 
     setType(type:eArticle){
@@ -62,8 +64,8 @@ export class ArticleBuilder {
         const path = `${__dirname}/articles.json`;
     }
 
-    loadArticle(){
-        return this._instance;
+    load(){
+
     }
 
     delete(){
@@ -71,39 +73,14 @@ export class ArticleBuilder {
     }
 }
 
+export class ArticleDirector {
+    constructor( public builder:typeof ArticleBuilder){
+
+    }
 
 
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// export class ArticleDirector {
-//     constructor( public builder:typeof ArticleBuilder){
-
-//     }
-
-//     private blankArticle(){
-//         const builder = new this.builder();
-//         builder.setId();
-//         return builder;
-//     }
-
-//     guestArticle (){
-//         const builder = this.blankArticle();
-//         builder.
-
-//     }
-
-// }
+// const director = new ArticleDirector(ArticleBuilder);
+// const article = director.whatever.create()
 
