@@ -15,13 +15,11 @@ export class Article {
     type: string;
 }
 
-
 export class ArticleBuilder {
 
     baseArticle = Article;
 
     private _instance: Article;
-
 
     protected get instance():Article {
         // if we don't have an instance of BikeBuilder
@@ -34,22 +32,23 @@ export class ArticleBuilder {
     }
 
     setId(){
-        this._instance.id = v4()
+        this.instance.id = v4()
     }
 
     setTitle(title:string){
-        this._instance.title = title; 
+        this.instance.title = title;
     }
     
     setDescription(desc:string){
-        this._instance.description = desc; 
+        this.instance.description = desc; 
     }
 
     setBody(body:string){
-        this._instance.body = body; 
+        this.instance.body = body; 
     }
 
-    setType(type:eArticle){
+    setType(type:string){
+        this.instance.type = type;
         switch(type){
             case eArticle.Guest: this.baseArticle; break;
             case eArticle.Premium: this.baseArticle; break;
@@ -70,8 +69,6 @@ export class ArticleBuilder {
 
     }
 }
-
-
 
 
 
