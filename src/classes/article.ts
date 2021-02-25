@@ -1,10 +1,10 @@
-import fs from 'fs';
-import { v4 } from 'uuid';
+import fs from "fs";
+import { v4 } from "uuid";
 
 export enum eArticle {
     Guest = "Free",
     Premium = "Premium",
-    Paid = "Paid"
+    Paid = "Paid",
 }
 
 class Article {
@@ -16,7 +16,6 @@ class Article {
 }
 
 export class ArticleBuilder {
-
     baseArticle = Article;
 
     private _instance: Article;
@@ -59,24 +58,20 @@ export class ArticleBuilder {
         }
     }
 
-    create(){
+    create() {
         const path = `${__dirname}/articles.json`;
     }
 
-    load(){
+    // load(){
 
-    }
+    // }
 
-    delete(){
+    // delete(){
 
-    }
+    // }
 }
 
 export class ArticleDirector {
-    constructor( public builder:typeof ArticleBuilder){
-
-    }
-
-
+    constructor(public builder: typeof ArticleBuilder) {}
 }
 
