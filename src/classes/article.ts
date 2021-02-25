@@ -1,13 +1,13 @@
 import fs from 'fs';
 import { v4 } from 'uuid';
 
-enum eArticle {
+export enum eArticle {
     Guest = "Free",
     Premium = "Premium",
     Paid = "Paid"
 }
 
-class Article {
+export class Article {
     id: string;
     title: string;
     description: string;
@@ -21,6 +21,17 @@ export class ArticleBuilder {
     baseArticle = Article;
 
     private _instance: Article;
+
+
+    protected get instance():Article {
+        // if we don't have an instance of BikeBuilder
+        if( !this._instance ){
+            this._instance = new this.baseArticle()
+
+        }
+        // if we do have an instance already, return it.
+        return this._instance;
+    }
 
     setId(){
         this._instance.id = v4()
@@ -51,8 +62,8 @@ export class ArticleBuilder {
         const path = `${__dirname}/articles.json`;
     }
 
-    load(){
-
+    loadArticle(){
+        return this._instance;
     }
 
     delete(){
@@ -60,14 +71,39 @@ export class ArticleBuilder {
     }
 }
 
-export class ArticleDirector {
-    constructor( public builder:typeof ArticleBuilder){
-
-    }
 
 
-}
 
-// const director = new ArticleDirector(ArticleBuilder);
-// const article = director.whatever.create()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// export class ArticleDirector {
+//     constructor( public builder:typeof ArticleBuilder){
+
+//     }
+
+//     private blankArticle(){
+//         const builder = new this.builder();
+//         builder.setId();
+//         return builder;
+//     }
+
+//     guestArticle (){
+//         const builder = this.blankArticle();
+//         builder.
+
+//     }
+
+// }
 
