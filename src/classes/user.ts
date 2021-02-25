@@ -7,9 +7,7 @@ export class User {
     username: string;
     password: string;
 
-    constructor() {
-    }
-
+    //Save the user to be loaded later.
     save(){
 
         const userToSave = {
@@ -22,11 +20,11 @@ export class User {
         if(!fs.existsSync(`${__dirname}/data`)){
             fs.mkdirSync(`${__dirname}/data`)
         }
-        fs.appendFileSync(path, userData, "utf-8");
+        fs.writeFileSync(path, userData, "utf-8");
         return userToSave;
     }
-
-    load(username:string) {
+    //Load the user
+    loadByUsername(username:string) {
         const userLoader = new LoggedInUser();
         const loadedUser = userLoader.loginUser(username);
         console.log(loadedUser)
@@ -36,25 +34,32 @@ export class User {
 
 
 
-class LoggedInUser {
+export class LoggedInUser {
+
     private static instance: LoggedInUser | null;
 
     private user: any;
+    
+    private counter:number = 0
+    constructor() {
+        this.counter++
+        console.log(this.counter)
+        if (LoggedInUser.instance) {
+            return LoggedInUser.instance;
+        } else {
+            return LoggedInUser.instance = this;
+        }
+    }
 
     public loginUser(username:string){
-            const path = `${__dirname}/data/${username}`;
-            const users = fs.readFileSync(path, "utf-8");
-            const usersFile = [JSON.parse(users)]
-            const loggedInUser = usersFile.find((u:any) => u.username === username);
+            const path = `${__dirname}/data/${username}`
+            const loggedInUser = fs.readFileSync(path, "utf-8")
             this.user = loggedInUser
             return loggedInUser;
     }
 
-    constructor() {
-        if (LoggedInUser.instance) {
-            return LoggedInUser.instance;
-        } else {
-            LoggedInUser.instance = this;
-        }
+    get loggedInUser(){
+        return this.user
     }
+
 }
