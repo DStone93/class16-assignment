@@ -96,4 +96,3 @@ export class ArticleBuilder {
 export class ArticleDirector {
     constructor(public builder: typeof ArticleBuilder) {}
 }
-

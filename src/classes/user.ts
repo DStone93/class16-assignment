@@ -1,10 +1,16 @@
 import fs = require("fs");
 import { v4 } from "uuid";
 
+export enum MemberStatus{
+    MEMBER = "Member",
+    PAIDMEMBER = "PaidMember"
+}
+
 export class User {
-    private id: string;
-    username: string;
-    password: string;
+    private id: string
+    username: string
+    password: string
+    memberStatus: MemberStatus
 
     //Save the user to be loaded later.
     save() {
@@ -12,7 +18,9 @@ export class User {
             username: this.username,
             password: this.password,
             id: this.id,
+            memberStatus: this.memberStatus
         };
+
         const userData = JSON.stringify(userToSave);
         const path = `${__dirname}/data/${this.username}`;
         if (!fs.existsSync(`${__dirname}/data`)) {
@@ -33,7 +41,9 @@ export class LoggedInUser {
     private static instance: LoggedInUser | null;
     private user: any;
 
-    private constructor() {}
+    private constructor() {
+        console.log("1")
+    }
 
     public static getInstance() {
         if (!LoggedInUser.instance) {

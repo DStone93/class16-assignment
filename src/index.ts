@@ -20,22 +20,16 @@ console.log(testLogin.loginUser("user"));
 const loadUser2 = testUser2.loadByUsername("user");
 
 console.log(/**** */);
-const art1 = new ArticleBuilder();
-art1.setTitle("Godzilla");
-art1.setId();
-art1.setType(eArticle.Guest);
-art1.setDescription("desc");
-art1.setBody("body");
-art1.publishArticle();
-art1.delete();
+const art = new ArticleBuilder();
+art.setTitle("Godzilla");
+art.setId();
+art.setType(eArticle.Guest);
+art.setDescription("desc");
+art.setBody("body");
+art.publishArticle();
+// art.delete();
+console.log(art)
 
-// const art2 = new ArticleBuilder();
-// art1.setTitle("Godzillaaa");
-// art1.setId();
-// art1.setType(eArticle.Guest);
-// art1.setDescription("desc1");
-// art1.setBody("body1");
-// art1.publishArticle();
 
-console.log(art1);
-// console.log(art2);
+
+
