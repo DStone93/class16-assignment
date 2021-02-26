@@ -27,5 +27,15 @@ art1.setType(eArticle.Guest);
 art1.setDescription("desc");
 art1.setBody("body");
 art1.publishArticle();
+art1.delete();
+
+// const art2 = new ArticleBuilder();
+// art1.setTitle("Godzillaaa");
+// art1.setId();
+// art1.setType(eArticle.Guest);
+// art1.setDescription("desc1");
+// art1.setBody("body1");
+// art1.publishArticle();
 
 console.log(art1);
+// console.log(art2);
