@@ -4,6 +4,8 @@ import "mocha";
 import fs = require("fs");
 
 // const result = new ArticleBuilder();
+let path = __dirname  
+
 describe("Article test", () => {
 
     describe("ArticleBuilder", () => {
@@ -47,6 +49,21 @@ describe("Article test", () => {
             expect(publishArticle.body).to.equal("Body");
         });
 
+        it("should delete article ,delete", () => {
+            const article = new ArticleBuilder();
+            article.setTitle("testDelete");
+            article.setId();
+            article.publishArticle();
+
+            // path = path.replace("tests","src/classes/articles")  
+
+            article.delete();
+
+            const publishArticle = article.getArticle();
+
+            expect(publishArticle).exist;
+        });
+
         describe("setType,", () => {
 
             it("should Type ==> Guest", () => {
@@ -77,7 +94,7 @@ describe("Article test", () => {
         describe("publish Article,", () => {
             it("Should published an Article", () => {
 
-                let path = __dirname        
+                     
 
                 const article = new ArticleBuilder();
                

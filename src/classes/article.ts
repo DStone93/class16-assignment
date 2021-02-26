@@ -1,4 +1,4 @@
-import fs from "fs";
+import fs, { unlinkSync } from "fs";
 import { v4 } from "uuid";
 
 export enum eArticle {
@@ -65,27 +65,34 @@ export class ArticleBuilder {
         return this._instance;
     }
 
-    publishArticle(){
-
+    publishArticle() {
         const publish = {
             id: this._instance.id,
             title: this._instance.title,
             description: this._instance.description,
             body: this._instance.body,
-            type: this._instance.type
+            type: this._instance.type,
         };
-        const artData = JSON.stringify(publish)
+    
+        const artData = JSON.stringify(publish, null, 2);
         const path = `${__dirname}/articles/${this._instance.title}`;
-        if(!fs.existsSync(`${__dirname}/articles`)){
-            fs.mkdirSync(`${__dirname}/articles`)
+        if (!fs.existsSync(`${__dirname}/articles`)) {
+            fs.mkdirSync(`${__dirname}/articles`);
         }
-        fs.writeFileSync(path, artData, "utf-8");
+        fs.writeFileSync(path, artData);
         return publish;
     }
 
-    // delete(){
 
-    // }
+    delete(){
+        const path = `${__dirname}/articles/${this._instance.title}`;
+        try {
+            fs.unlinkSync(path)
+        } catch(err) {
+            console.log(err)
+        }
+        
+    }
 }
 
 export class ArticleDirector {
