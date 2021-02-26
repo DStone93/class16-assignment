@@ -7,7 +7,7 @@ export enum eArticle {
     Paid = "Paid",
 }
 
-class Article {
+export class Article {
     id: string;
     title: string;
     description: string;
@@ -61,6 +61,10 @@ export class ArticleBuilder {
         }
     }
 
+    getArticle(){
+        return this._instance;
+    }
+
     publishArticle(){
 
         const publish = {
@@ -85,5 +89,5 @@ export class ArticleBuilder {
 }
 
 export class ArticleDirector {
-    constructor(public builder: typeof ArticleBuilder) {}
+    constructor(public builder?: typeof ArticleBuilder) {}
 }
