@@ -57,7 +57,7 @@ describe("User test", () => {
             const testLogin = LoggedInUser.getInstance()
             const loggedInUser = testLogin.loginUser("TestyMcTesterson")
             // console.log("++++++++",loggedInUser)
-            console.log("++++++++",testLogin.loggedInUser)
+            // console.log("++++++++",testLogin.loggedInUser)
             expect(loggedInUser).to.equal('{"username":"TestyMcTesterson","password":"Test"}');
         });
 
