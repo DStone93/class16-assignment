@@ -2,7 +2,7 @@ import fs from "fs";
 import { v4 } from "uuid";
 
 export enum eArticle {
-    Guest = "Free",
+    Guest = "Guest",
     Premium = "Premium",
     Paid = "Paid",
 }
@@ -61,13 +61,23 @@ export class ArticleBuilder {
         }
     }
 
-    create() {
-        const path = `${__dirname}/articles.json`;
+    publishArticle(){
+
+        const publish = {
+            id: this._instance.id,
+            title: this._instance.title,
+            description: this._instance.description,
+            body: this._instance.body,
+            type: this._instance.type
+        };
+        const artData = JSON.stringify(publish)
+        const path = `${__dirname}/articles/${this._instance.title}`;
+        if(!fs.existsSync(`${__dirname}/articles`)){
+            fs.mkdirSync(`${__dirname}/articles`)
+        }
+        fs.writeFileSync(path, artData, "utf-8");
+        return publish;
     }
-
-    // load(){
-
-    // }
 
     // delete(){
 
