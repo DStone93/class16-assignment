@@ -55,13 +55,15 @@ describe("Article test", () => {
             article.setId();
             article.publishArticle();
 
-            // path = path.replace("tests","src/classes/articles")  
+            path = path.replace("tests","src/classes/articles")  
+
 
             article.delete();
 
-            const publishArticle = article.getArticle();
+            const fileExist = fs.existsSync(`${path}/testDelete`)
 
-            expect(publishArticle).exist;
+            expect(fileExist).to.be.false;
+
         });
 
         describe("setType,", () => {

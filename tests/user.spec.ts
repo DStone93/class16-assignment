@@ -5,7 +5,6 @@ import "mocha";
 
 
 let path = __dirname        
-// console.log( "*************************",path)
 
 describe("User test", () => {
     it("should create user", () => {
@@ -45,10 +44,7 @@ describe("User test", () => {
     describe("should login user", () => {
 
         it("should login user by name,loginUser()", () => {
-
-
-            // path = path.replace("tests","dist/classes/data/TestyMcTesterson")
-            
+           
             const user = new User();
             user.username= "TestyMcTesterson"
             user.password= "Test"
@@ -56,8 +52,7 @@ describe("User test", () => {
     
             const testLogin = LoggedInUser.getInstance()
             const loggedInUser = testLogin.loginUser("TestyMcTesterson")
-            // console.log("++++++++",loggedInUser)
-            // console.log("++++++++",testLogin.loggedInUser)
+            
             expect(loggedInUser).to.equal('{"username":"TestyMcTesterson","password":"Test"}');
         });
 
