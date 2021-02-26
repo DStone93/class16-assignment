@@ -4,7 +4,7 @@ import "mocha";
 // const result = new ArticleBuilder();
 describe("Article test", () => {
     it("should create Article", () => {
-        const result = new ArticleBuilder(); 
+        const result = new ArticleBuilder();
         expect(result).to.equal("Hello world!");
     });
     it("should delete user", () => {
