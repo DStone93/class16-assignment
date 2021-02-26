@@ -33,6 +33,7 @@
   },
   "dependencies": {
     "@types/fs-extra": "^9.0.7",
+    "@types/node": "^14.14.31",
     "fs": "^0.0.1-security",
     "v4": "^0.0.1"
   }
